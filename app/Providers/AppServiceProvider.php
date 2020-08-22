@@ -6,9 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-    ];
     
     
     /**
@@ -28,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
-        Passport::routes();
+        
     }
 }
