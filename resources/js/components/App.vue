@@ -1,3 +1,3 @@
 <template>
-ok
+<div>ok</div>
 </template>
