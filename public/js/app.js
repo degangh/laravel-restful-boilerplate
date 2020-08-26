@@ -39167,16 +39167,20 @@ var render = function() {
                     { attrs: { cols: "12", sm: "8", md: "4" } },
                     [
                       _c(
-                        "v-card",
-                        { staticClass: "elevation-12" },
+                        "v-alert",
+                        {
+                          attrs: {
+                            border: "left",
+                            "colored-border": "",
+                            type: "error",
+                            elevation: "2"
+                          }
+                        },
                         [
-                          _c("v-card-text", [
-                            _vm._v(
-                              "\r\n                            The page you are looking for is not found\r\n\r\n              "
-                            )
-                          ])
-                        ],
-                        1
+                          _vm._v(
+                            "\r\n                The page you are looking for is not found\r\n            "
+                          )
+                        ]
                       )
                     ],
                     1

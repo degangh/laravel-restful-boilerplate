@@ -13,13 +13,14 @@
             sm="8"
             md="4"
           >
-            <v-card class="elevation-12">
-              <v-card-text>
-                            The page you are looking for is not found
-
-              </v-card-text>
-      
-            </v-card>
+            <v-alert
+                border="left"
+                colored-border
+                type="error"
+                elevation="2"
+            >
+                The page you are looking for is not found
+            </v-alert>
           </v-col>
         </v-row>
       </v-container>
