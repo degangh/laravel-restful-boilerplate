@@ -30,15 +30,53 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import NotFound from "./components/NotFound";
 import App from "./components/App";
+import Home from "./components/Home"
+import Login from "./components/Login";
+import Test from "./components/Test"
+
+const router = new VueRouter({
+    mode: "history",
+    routes: [
+        {
+            path: "/",
+            name: "home",
+            component: Home
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
+        },
+        {
+            path: "/test",
+            name: "test",
+            component: Test
+        },
+        {
+            path: "*",
+            name: "NotFound",
+            component: NotFound
+        }
+    ],
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+     }
+});
+
+
 const app = new Vue({
     el: '#app',
-    components: { App }
+    components: { 
+        App
+     },
+     router,
+    vuetify: new Vuetify()
 });
