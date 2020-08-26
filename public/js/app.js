@@ -39148,20 +39148,42 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-app",
+    { attrs: { id: "inspire" } },
     [
       _c(
-        "v-card",
+        "v-main",
         [
           _c(
-            "v-responsive",
-            { attrs: { "aspect-ratio": 16 / 9 } },
+            "v-container",
+            { attrs: { fluid: "" } },
             [
-              _c("v-card-text", [
-                _vm._v(
-                  "\n        The page you are looking for is not found\n      "
-                )
-              ])
+              _c(
+                "v-row",
+                { attrs: { align: "center", justify: "center" } },
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", sm: "8", md: "4" } },
+                    [
+                      _c(
+                        "v-card",
+                        { staticClass: "elevation-12" },
+                        [
+                          _c("v-card-text", [
+                            _vm._v(
+                              "\r\n                            The page you are looking for is not found\r\n\r\n              "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )
