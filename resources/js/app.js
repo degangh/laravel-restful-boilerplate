@@ -47,8 +47,15 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
+            name: "defaultHome",
+            component: Home,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: "/home",
             name: "home",
-            component: Home
+            component: Home,
+            meta: { requiresAuth: true }
         },
         {
             path: "/login",
@@ -70,6 +77,34 @@ const router = new VueRouter({
         return { x: 0, y: 0 }
      }
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        if (localStorage.getItem("_token") == null) {
+          next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+          })
+        } else {
+          next()
+        }
+      } else {
+        next() // make sure to always call next()!
+      }
+  });
+
+window.axios.interceptors.response.use(response => {
+    return response;
+ }, error => {
+   if (error.response.status === 401) {
+
+    location.href="/login"
+   }
+
+   return Promise.reject(error.response);
+ });
 
 
 const app = new Vue({

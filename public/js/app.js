@@ -2134,6 +2134,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2151,6 +2167,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         icon: 'mdi-keyboard',
         text: 'Others'
+      }],
+      userItems: [{
+        title: 'Logout',
+        func: 'logout'
+      }, {
+        title: 'Help',
+        func: ''
       }]
     };
   },
@@ -2162,6 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.removeItem('_token');
       this.$forceUpdate();
       this.$router.push("/login");
+    },
+    apply_func: function apply_func(func_name) {
+      if (func_name) this[func_name]();
     }
   }
 });
@@ -38718,38 +38744,89 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "", large: "" } },
-            [
-              _c(
-                "v-avatar",
-                { attrs: { size: "32px", item: "" } },
+          _vm.isLogin()
+            ? _c(
+                "v-menu",
+                {
+                  attrs: { "offset-y": "" },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "activator",
+                        fn: function(ref) {
+                          var on = ref.on
+                          var attrs = ref.attrs
+                          return [
+                            _c(
+                              "v-btn",
+                              _vm._g(
+                                _vm._b(
+                                  { attrs: { icon: "", large: "" } },
+                                  "v-btn",
+                                  attrs,
+                                  false
+                                ),
+                                on
+                              ),
+                              [
+                                _c(
+                                  "v-avatar",
+                                  { attrs: { size: "32px", item: "" } },
+                                  [
+                                    _c("v-img", {
+                                      attrs: {
+                                        src:
+                                          "https://cdn.vuetifyjs.com/images/logos/logo.svg",
+                                        alt: "Vuetify"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      }
+                    ],
+                    null,
+                    false,
+                    3493024111
+                  )
+                },
                 [
-                  _c("v-img", {
-                    attrs: {
-                      src: "https://cdn.vuetifyjs.com/images/logos/logo.svg",
-                      alt: "Vuetify"
-                    }
-                  })
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.userItems, function(item, i) {
+                      return _c(
+                        "v-list-item",
+                        {
+                          key: i,
+                          on: {
+                            click: function($event) {
+                              return _vm.apply_func(item.func)
+                            }
+                          }
+                        },
+                        [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])],
+                        1
+                      )
+                    }),
+                    1
+                  )
                 ],
                 1
               )
-            ],
-            1
-          )
+            : _vm._e()
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "v-main",
-        [
-          _c("v-container", {
-            staticClass: "fill-height",
-            attrs: { fluid: "" }
-          })
-        ],
+        [_c("v-container", { attrs: { fluid: "" } }, [_c("router-view")], 1)],
         1
       ),
       _vm._v(" "),
@@ -38958,9 +39035,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("router-view")
+      )
     ],
     1
   )
@@ -98281,8 +98356,18 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: [{
     path: "/",
+    name: "defaultHome",
+    component: _components_Home__WEBPACK_IMPORTED_MODULE_6__["default"],
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    path: "/home",
     name: "home",
-    component: _components_Home__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_Home__WEBPACK_IMPORTED_MODULE_6__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: "/login",
     name: "login",
@@ -98302,6 +98387,35 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       y: 0
     };
   }
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (localStorage.getItem("_token") == null) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next(); // make sure to always call next()!
+  }
+});
+window.axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if (error.response.status === 401) {
+    location.href = "/login";
+  }
+
+  return Promise.reject(error.response);
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
