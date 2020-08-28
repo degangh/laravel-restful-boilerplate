@@ -103,11 +103,16 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        large
-      >
-        <v-avatar
+      
+      <v-menu offset-y v-if = "isLogin()">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          icon
+          large
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-avatar
           size="32px"
           item
         >
@@ -115,14 +120,26 @@
             src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
             alt="Vuetify"
           ></v-img></v-avatar>
-      </v-btn>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in userItems"
+          :key="i"
+          @click="apply_func(item.func)"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     </v-app-bar>
     <v-main>
       <v-container
-        class="fill-height"
         fluid
       >
-        
+          <router-view></router-view>
+
       </v-container>
     </v-main>
     <v-btn
@@ -219,7 +236,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <router-view></router-view>
 
   </v-app>
 </template>
@@ -237,6 +253,10 @@
         { icon: 'mdi-content-copy', text: 'Settings' },
         { icon: 'mdi-keyboard', text: 'Others' },
       ],
+      userItems: [
+          {title: 'Logout', func: 'logout'},
+          {title: 'Help', func: ''}
+        ],
     }),
     methods: {
       
@@ -249,7 +269,11 @@
         localStorage.removeItem('_token');
         this.$forceUpdate();
         this.$router.push("/login");
-        }
+        },
+      apply_func(func_name) {
+        if (func_name) this[func_name]()
+      },
+      
     }
   }
 </script>
