@@ -1908,6 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FAB__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FAB */ "./resources/js/components/FAB.vue");
+/* harmony import */ var _dialogs_EditContactForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dialogs/EditContactForm */ "./resources/js/components/dialogs/EditContactForm.vue");
 //
 //
 //
@@ -2064,99 +2066,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
   },
   data: function data() {
     return {
-      dialog: false,
+      contactDialog: false,
       drawer: null,
       items: [{
         icon: 'mdi-contacts',
@@ -2188,6 +2106,73 @@ __webpack_require__.r(__webpack_exports__);
     },
     apply_func: function apply_func(func_name) {
       if (func_name) this[func_name]();
+    },
+    openFormDialog: function openFormDialog(payload) {
+      this[payload.form] = true;
+      this.formAction = payload.action;
+    },
+    closeFormDialog: function closeFormDialog(form) {
+      this[form] = false;
+      this.formAction = null;
+    }
+  },
+  components: {
+    EditContactForm: _dialogs_EditContactForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FloatingButton: _FAB__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FAB.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FAB.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FloatingButton',
+  data: function data() {
+    return {
+      direction: 'top',
+      fab: false,
+      fling: false,
+      hover: false,
+      tabs: null,
+      top: false,
+      right: true,
+      bottom: true,
+      left: false,
+      transition: 'slide-y-reverse-transition',
+      addressButton: false,
+      editOrderButton: false
+    };
+  },
+  methods: {
+    popupDialog: function popupDialog(form) {
+      var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      this.$emit('popupFormDialog', {
+        form: form,
+        action: action
+      });
     }
   }
 });
@@ -2298,6 +2283,118 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     next();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "EditContactForm",
+  data: function data() {
+    return {};
+  },
+  props: {
+    dialog: Boolean
+  },
+  methods: {
+    emitCloseDialog: function emitCloseDialog(form) {
+      //this.$refs.ContactForm.reset()
+      this.$emit("closeDialog", form);
+    }
   }
 });
 
@@ -38687,142 +38784,148 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c(
-        "v-app-bar",
-        {
-          attrs: {
-            "clipped-left": _vm.$vuetify.breakpoint.lgAndUp,
-            app: "",
-            color: "blue darken-3",
-            dark: ""
-          }
-        },
-        [
-          _c("v-app-bar-nav-icon", {
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
-                _vm.drawer = !_vm.drawer
+      _vm.isLogin()
+        ? _c(
+            "v-app-bar",
+            {
+              attrs: {
+                "clipped-left": _vm.$vuetify.breakpoint.lgAndUp,
+                app: "",
+                color: "blue darken-3",
+                dark: ""
               }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "v-toolbar-title",
-            { staticClass: "ml-0 pl-4", staticStyle: { width: "300px" } },
+            },
             [
-              _c("span", { staticClass: "hidden-sm-and-down" }, [
-                _vm._v("Starter Pack")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("v-text-field", {
-            staticClass: "hidden-sm-and-down",
-            attrs: {
-              flat: "",
-              "solo-inverted": "",
-              "hide-details": "",
-              "prepend-inner-icon": "mdi-magnify",
-              label: "Search"
-            }
-          }),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "" } },
-            [_c("v-icon", [_vm._v("mdi-apps")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "" } },
-            [_c("v-icon", [_vm._v("mdi-bell")])],
-            1
-          ),
-          _vm._v(" "),
-          _vm.isLogin()
-            ? _c(
-                "v-menu",
-                {
-                  attrs: { "offset-y": "" },
-                  scopedSlots: _vm._u(
-                    [
-                      {
-                        key: "activator",
-                        fn: function(ref) {
-                          var on = ref.on
-                          var attrs = ref.attrs
-                          return [
-                            _c(
-                              "v-btn",
-                              _vm._g(
-                                _vm._b(
-                                  { attrs: { icon: "", large: "" } },
-                                  "v-btn",
-                                  attrs,
-                                  false
-                                ),
-                                on
-                              ),
-                              [
+              _c("v-app-bar-nav-icon", {
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.drawer = !_vm.drawer
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "v-toolbar-title",
+                { staticClass: "ml-0 pl-4", staticStyle: { width: "300px" } },
+                [
+                  _c("span", { staticClass: "hidden-sm-and-down" }, [
+                    _vm._v("Starter Pack")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("v-text-field", {
+                staticClass: "hidden-sm-and-down",
+                attrs: {
+                  flat: "",
+                  "solo-inverted": "",
+                  "hide-details": "",
+                  "prepend-inner-icon": "mdi-magnify",
+                  label: "Search"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { attrs: { icon: "" } },
+                [_c("v-icon", [_vm._v("mdi-apps")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { attrs: { icon: "" } },
+                [_c("v-icon", [_vm._v("mdi-bell")])],
+                1
+              ),
+              _vm._v(" "),
+              _vm.isLogin()
+                ? _c(
+                    "v-menu",
+                    {
+                      attrs: { "offset-y": "" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
                                 _c(
-                                  "v-avatar",
-                                  { attrs: { size: "32px", item: "" } },
+                                  "v-btn",
+                                  _vm._g(
+                                    _vm._b(
+                                      { attrs: { icon: "", large: "" } },
+                                      "v-btn",
+                                      attrs,
+                                      false
+                                    ),
+                                    on
+                                  ),
                                   [
-                                    _c("v-img", {
-                                      attrs: {
-                                        src:
-                                          "https://cdn.vuetifyjs.com/images/logos/logo.svg",
-                                        alt: "Vuetify"
-                                      }
-                                    })
+                                    _c(
+                                      "v-avatar",
+                                      { attrs: { size: "32px", item: "" } },
+                                      [
+                                        _c("v-img", {
+                                          attrs: {
+                                            src:
+                                              "https://cdn.vuetifyjs.com/images/logos/logo.svg",
+                                            alt: "Vuetify"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
                                   ],
                                   1
                                 )
-                              ],
-                              1
-                            )
-                          ]
-                        }
-                      }
-                    ],
-                    null,
-                    false,
-                    3493024111
-                  )
-                },
-                [
-                  _vm._v(" "),
-                  _c(
-                    "v-list",
-                    _vm._l(_vm.userItems, function(item, i) {
-                      return _c(
-                        "v-list-item",
-                        {
-                          key: i,
-                          on: {
-                            click: function($event) {
-                              return _vm.apply_func(item.func)
+                              ]
                             }
                           }
-                        },
-                        [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])],
+                        ],
+                        null,
+                        false,
+                        3493024111
+                      )
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-list",
+                        _vm._l(_vm.userItems, function(item, i) {
+                          return _c(
+                            "v-list-item",
+                            {
+                              key: i,
+                              on: {
+                                click: function($event) {
+                                  return _vm.apply_func(item.func)
+                                }
+                              }
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v(_vm._s(item.title))
+                              ])
+                            ],
+                            1
+                          )
+                        }),
                         1
                       )
-                    }),
+                    ],
                     1
                   )
-                ],
-                1
-              )
-            : _vm._e()
-        ],
-        1
-      ),
+                : _vm._e()
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "v-main",
@@ -38830,213 +38933,66 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.isLogin()
-        ? _c(
-            "v-btn",
-            {
-              attrs: {
-                bottom: "",
-                color: "blue",
-                dark: "",
-                fab: "",
-                fixed: "",
-                right: ""
-              },
-              on: {
-                click: function($event) {
-                  _vm.dialog = !_vm.dialog
-                }
-              }
-            },
-            [_c("v-icon", [_vm._v("mdi-plus")])],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "v-dialog",
-        {
-          attrs: { width: "800px" },
-          model: {
-            value: _vm.dialog,
-            callback: function($$v) {
-              _vm.dialog = $$v
-            },
-            expression: "dialog"
+      _c("floating-button", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isLogin(),
+            expression: "isLogin()"
           }
-        },
-        [
-          _c(
-            "v-card",
-            [
-              _c("v-card-title", { staticClass: "grey darken-2" }, [
-                _vm._v("\n        Create contact\n      ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-container",
-                [
-                  _c(
-                    "v-row",
-                    { staticClass: "mx-2" },
-                    [
-                      _c(
-                        "v-col",
-                        {
-                          staticClass: "align-center justify-space-between",
-                          attrs: { cols: "12" }
-                        },
-                        [
-                          _c(
-                            "v-row",
-                            { staticClass: "mr-0", attrs: { align: "center" } },
-                            [
-                              _c(
-                                "v-avatar",
-                                {
-                                  staticClass: "mx-3",
-                                  attrs: { size: "40px" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: {
-                                      src:
-                                        "//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png",
-                                      alt: ""
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                attrs: { placeholder: "Name" }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              "prepend-icon":
-                                "mdi-account-card-details-outline",
-                              placeholder: "Company"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { placeholder: "Job title" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              "prepend-icon": "mdi-mail",
-                              placeholder: "Email"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              type: "tel",
-                              "prepend-icon": "mdi-phone",
-                              placeholder: "(000) 000 - 0000"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              "prepend-icon": "mdi-text",
-                              placeholder: "Notes"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c("v-btn", { attrs: { text: "", color: "primary" } }, [
-                    _vm._v("More")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { text: "", color: "primary" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog = false
-                        }
-                      }
-                    },
-                    [_vm._v("Cancel")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog = false
-                        }
-                      }
-                    },
-                    [_vm._v("Save")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
         ],
-        1
-      )
+        on: { popupFormDialog: _vm.openFormDialog }
+      }),
+      _vm._v(" "),
+      _c("edit-contact-form", {
+        attrs: { dialog: _vm.contactDialog },
+        on: { closeDialog: _vm.closeFormDialog }
+      })
     ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FAB.vue?vue&type=template&id=c7a97928&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FAB.vue?vue&type=template&id=c7a97928& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-btn",
+    {
+      attrs: {
+        bottom: "",
+        color: "blue",
+        dark: "",
+        fab: "",
+        fixed: "",
+        right: ""
+      },
+      on: {
+        click: function($event) {
+          return _vm.popupDialog("contactDialog")
+        }
+      }
+    },
+    [_c("v-icon", [_vm._v("mdi-plus")])],
     1
   )
 }
@@ -39296,6 +39252,222 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [_vm._v("\n    Test\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { fullscreen: _vm.$vuetify.breakpoint.smAndDown, persistent: "" },
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-toolbar",
+            { staticClass: "blue darken-2", attrs: { dark: "" } },
+            [
+              _vm._v("\r\n          Create Contact\r\n          "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", dark: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.emitCloseDialog("contactDialog")
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-container",
+            [
+              _c(
+                "v-row",
+                { staticClass: "mx-2" },
+                [
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "align-center justify-space-between",
+                      attrs: { cols: "12" }
+                    },
+                    [
+                      _c(
+                        "v-row",
+                        { staticClass: "mr-0", attrs: { align: "center" } },
+                        [
+                          _c(
+                            "v-avatar",
+                            { staticClass: "mx-3", attrs: { size: "40px" } },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src:
+                                    "//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png",
+                                  alt: ""
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-text-field", { attrs: { placeholder: "Name" } })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "6" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-icon": "mdi-account-card-details-outline",
+                          placeholder: "Company"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "6" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: { placeholder: "Job title" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-icon": "mdi-mail",
+                          placeholder: "Email"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          type: "tel",
+                          "prepend-icon": "mdi-phone",
+                          placeholder: "(000) 000 - 0000"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-icon": "mdi-text",
+                          placeholder: "Notes"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { text: "", color: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.emitCloseDialog("contactDialog")
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { text: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -98548,6 +98720,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/FAB.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/components/FAB.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FAB.vue?vue&type=template&id=c7a97928& */ "./resources/js/components/FAB.vue?vue&type=template&id=c7a97928&");
+/* harmony import */ var _FAB_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FAB.vue?vue&type=script&lang=js& */ "./resources/js/components/FAB.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FAB_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FAB.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FAB.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/FAB.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FAB_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FAB.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FAB.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FAB_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FAB.vue?vue&type=template&id=c7a97928&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/FAB.vue?vue&type=template&id=c7a97928& ***!
+  \************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FAB.vue?vue&type=template&id=c7a97928& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FAB.vue?vue&type=template&id=c7a97928&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FAB_vue_vue_type_template_id_c7a97928___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Home.vue":
 /*!******************************************!*\
   !*** ./resources/js/components/Home.vue ***!
@@ -98771,6 +99012,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_5f45227d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Test_vue_vue_type_template_id_5f45227d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/dialogs/EditContactForm.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/dialogs/EditContactForm.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditContactForm.vue?vue&type=template&id=33b0bb1b& */ "./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b&");
+/* harmony import */ var _EditContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditContactForm.vue?vue&type=script&lang=js& */ "./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dialogs/EditContactForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditContactForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialogs/EditContactForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditContactForm.vue?vue&type=template&id=33b0bb1b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialogs/EditContactForm.vue?vue&type=template&id=33b0bb1b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditContactForm_vue_vue_type_template_id_33b0bb1b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
