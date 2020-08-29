@@ -39209,7 +39209,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                The page you are looking for is not found\r\n            "
+                            "\n                The page you are looking for is not found\n            "
                           )
                         ]
                       )
@@ -39295,7 +39295,7 @@ var render = function() {
             "v-toolbar",
             { staticClass: "blue darken-2", attrs: { dark: "" } },
             [
-              _vm._v("\r\n          Create Contact\r\n          "),
+              _vm._v("\n          Create Contact\n          "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
@@ -99104,8 +99104,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Code\heaters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Code\heaters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/starter-pack/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/starter-pack/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

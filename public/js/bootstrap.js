@@ -37315,7 +37315,7 @@ if (bearer_token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Code\heaters\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/starter-pack/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })
